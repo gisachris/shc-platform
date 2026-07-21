@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext, useRef } from 'react';
-import { API_BASE_URL } from '../config';
+import { API_URL } from '../config';
 
 const AuthContext = createContext(null);
 
@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
     const fetchUser = async (token) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/auth/me`, {
+            const response = await fetch(`${API_URL}/auth/me`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

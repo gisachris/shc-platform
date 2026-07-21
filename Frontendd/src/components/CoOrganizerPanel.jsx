@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { UserPlus, X } from 'lucide-react';
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5050';
+import { API_BASE_URL } from '../../config';
 
 export default function CoOrganizerPanel({ eventId, isOwner }) {
   const [coOrgs, setCoOrgs] = useState([]);

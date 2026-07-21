@@ -6,7 +6,9 @@ import rateLimit from 'express-rate-limit';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import swaggerUi from 'swagger-ui-express';
 import { secureUploads } from './middleware/secureUploads.js';
+import swaggerSpec from './config/swagger.js';
 
 import { env } from './config/env.js';
 
@@ -42,6 +44,12 @@ app.use(
   secureUploads,
   express.static(path.join(process.cwd(), 'uploads'))
 );
+
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.get('/api/docs.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
 
 app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);

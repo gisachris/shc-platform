@@ -1,6 +1,6 @@
 
-const defaultApiUrl = 'http://localhost:5050';
+const configuredApiUrl = (import.meta.env.VITE_API_URL || '').trim();
 
-export const API_BASE_URL = (
-  import.meta.env.VITE_API_URL || defaultApiUrl
-).replace(/\/$/, '');
+export const API_BASE_URL = configuredApiUrl && /^https?:\/\//.test(configuredApiUrl)
+  ? configuredApiUrl.replace(/\/$/, '')
+  : '';

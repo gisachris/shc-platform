@@ -30,7 +30,15 @@ const handleSubmit = async (e) => {
             body: JSON.stringify({ email, password })
         });
 
-        const data = await res.json();
+        const text = await res.text();
+        let data = {};
+
+        try {
+            data = text ? JSON.parse(text) : {};
+        } catch (parseError) {
+            console.error("Login response was not JSON", parseError);
+            throw new Error(`The server returned an unexpected response. Check that the backend is running and that VITE_API_URL is configured correctly.`);
+        }
 
         if (res.ok) {
             login(data.token, data.user);
@@ -48,7 +56,7 @@ const handleSubmit = async (e) => {
     } catch (error) {
         console.error("Login error", error);
 
-        toast.error("Something went wrong", {
+        toast.error(error.message || "Something went wrong", {
             id: loadingToast,
         });
     } finally {

@@ -1,6 +1,36 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
-dotenv.config();
+const currentFilePath = fileURLToPath(import.meta.url);
+const currentDir = path.dirname(currentFilePath);
+const backendRoot = path.resolve(currentDir, '../..');
+
+export function loadEnv({ cwd = process.cwd(), filePath = currentFilePath } = {}) {
+  const resolvedCandidates = [
+    path.resolve(path.dirname(filePath), '../../.env'),
+    path.resolve(cwd, '.env'),
+    path.resolve(cwd, 'backend/.env'),
+    path.resolve(backendRoot, '.env'),
+  ];
+
+  const uniqueCandidates = [...new Set(resolvedCandidates.filter(Boolean))];
+
+  for (const candidate of uniqueCandidates) {
+    if (fs.existsSync(candidate)) {
+      dotenv.config({ path: candidate });
+    }
+  }
+
+  if (!uniqueCandidates.some((candidate) => fs.existsSync(candidate))) {
+    dotenv.config();
+  }
+
+  return process.env;
+}
+
+loadEnv();
 
 const isProduction = process.env.NODE_ENV === 'production';
 const requiredEnvVars = [];

@@ -147,7 +147,12 @@ async function run() {
     process.exit(1);
   }
 
-  await connectDB();
+  try {
+    await connectDB();
+  } catch (error) {
+    console.error('Seed failed because the database could not be reached.');
+    process.exit(1);
+  }
 
   // Clear database
   await Promise.all([

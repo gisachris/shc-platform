@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { LegalModal } from "../components/ui/legal-modal";
 import { legalContent } from "../data/legalContent";
 
-import { API_BASE_URL } from "../config";
+import { API_URL } from "../config";
 
 // ── Reusable error message component ─────────────────────────────────────
 const ErrorMsg = ({ msg }) =>
@@ -112,7 +112,7 @@ export default function SignUp() {
             role: formData.role
         };
 
-        const res = await fetch(`${API_BASE_URL}/api/auth/signup`, {
+        const res = await fetch(`${API_URL}/auth/signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)

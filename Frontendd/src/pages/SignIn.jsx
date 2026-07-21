@@ -5,7 +5,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
 
-import { API_BASE_URL } from "../config";
+import { API_URL } from "../config";
 
 export default function SignIn() {
     const [isVisible, setIsVisible] = useState(false);
@@ -24,7 +24,7 @@ const handleSubmit = async (e) => {
     const loadingToast = toast.loading("Signing in...");
 
     try {
-        const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
+        const res = await fetch(`${API_URL}/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })

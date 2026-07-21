@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, MapPin, Ticket, X, Download, Search, Heart, Calendar, MapPin, Ticket } from 'lucide-react';
+import { Calendar, MapPin, Ticket, X, Download, Search, Heart } from 'lucide-react';
 import { io } from 'socket.io-client';
-import  {Calendar as BigCalendar,momentLocalizer,} from 'react-big-calendar';
+import { Calendar as BigCalendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Button } from '../../components/ui/button';
@@ -46,7 +46,6 @@ export default function CustomerDashboard() {
   const [availableEvents, setAvailableEvents] = useState([]);
   const [viewMode, setViewMode] = useState('grid');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedRegistrationId, setSelectedRegistrationId] = useState(null);
   const [selectedRegistrationId, setSelectedRegistrationId] = useState(null);
   const [highlightedEvents, setHighlightedEvents] = useState({});
   const [searchQuery, setSearchQuery] = useState(() => searchParams.get('q') || '');
@@ -119,37 +118,12 @@ export default function CustomerDashboard() {
       if (res.ok && mountedRef.current) {
         const data = await res.json();
         const upcoming = (data.events || []).filter(
-          (evt) => new Date(evt.date) >= new Date()
+          (evt) => new Date(evt.date) >= new Date(),
         );
         setAvailableEvents(upcoming);
       }
     } catch (error) {
       console.error('Failed to fetch events', error);
-    } finally {
-      if (mountedRef.current) setLoading(false);
-    }
-  }, [searchParams]);
-
-  const fetchAvailableEvents = useCallback(async () => {
-    try {
-      if (mountedRef.current) setLoading(true);
-      const token = localStorage.getItem('token');
-      const res = await fetch(`${API_BASE_URL}/api/registrations/me`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (res.ok && mountedRef.current) {
-        const data = await res.json();
-
-        const upcoming = (data.events || []).filter(
-            (evt) => new Date(evt.date) >= new Date()
-        );
-
-      if (mountedRef.current) {
-        setAvailableEvents(upcoming);
-      }
-    }
-    } catch (error) {
-      console.error("Failed to fetch events:", error);
     } finally {
       if (mountedRef.current) {
         setIsFetching(false);

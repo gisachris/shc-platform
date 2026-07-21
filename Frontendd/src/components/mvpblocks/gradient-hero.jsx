@@ -44,8 +44,8 @@ export default function GradientHero() {
             className="text-center text-4xl tracking-tight sm:text-6xl lg:text-7xl"
 
           >
-            <span className="text-foreground">Run Events </span>
-            <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Smarter</span>
+            <span className="text-foreground">Run Smart </span>
+            <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Hybrid Events</span>
           </motion.h1>
 
           {/* Description */}
@@ -55,8 +55,8 @@ export default function GradientHero() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="text-muted-foreground mx-auto mt-8 max-w-3xl text-center text-lg sm:text-xl leading-relaxed"
           >
-            A modern event management platform designed to help organizations plan, manage, and host impactful events with ease.
-            Trusted by GDG Jalandhar, AWS Cloud Clubs, and Coding Ninjas.
+            A proposal-aligned platform for organizing hybrid conferences and events with seamless registration, attendee engagement, live participation, and destination-aware experiences.
+            Built to support modern organizers, attendees, and visitors with one integrated workflow.
           </motion.p>
 
           {/* Search Box */}

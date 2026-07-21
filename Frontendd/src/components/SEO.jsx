@@ -16,7 +16,7 @@ const SEO = ({ title, description, ogImage, url = '' }) => {
   
   // Build absolute image URL (prefer provided image, fallback to public image)
   const absoluteOgImage = ogImage ? (ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`) : `${siteUrl}/Mvpblocks.webp`;
-  const appName = 'eventone';
+  const appName = 'Smart Hybrid Conference Platform';
 
   return (
     <Helmet>

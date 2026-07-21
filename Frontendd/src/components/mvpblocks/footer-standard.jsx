@@ -109,8 +109,7 @@ export default function FooterStandard() {
             </a>
 
             <p className="text-muted-foreground max-w-md">
-              Building innovative solutions for modern businesses.
-              Fast, reliable, and scalable.
+              A smart hybrid conference and event platform that connects organizers, attendees, and local experiences in one elegant experience.
             </p>
 
             {/* Social Icons */}

@@ -61,11 +61,10 @@ export default function FeatureSteps() {
         <div className="relative mx-auto mb-12 max-w-2xl sm:text-center">
           <div className="relative z-10">
             <h2 className="font-geist text-3xl font-bold tracking-tighter md:text-4xl lg:text-5xl">
-              Scale Your Events in Three Steps
+              Shape the Full Event Journey
             </h2>
             <p className="text-foreground font-geist text-3xl font-bold tracking-tighter md:text-4xl lg:text-5xl">
-              Eventone helps you create, customize, and deploy your Events
-              faster than ever before.
+              From registration to participation and post-event insights, this platform helps you deliver a smarter hybrid experience.
             </p>
           </div>
           <div
